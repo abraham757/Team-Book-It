@@ -1,17 +1,12 @@
 {
-  "name": "main",
+  "name": "placeholder",
   "version": "1.0.0",
-  "description": "",
-  "main": "test.html",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
-
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.1.3",
-    "wait-on": "^7.2.0"
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
