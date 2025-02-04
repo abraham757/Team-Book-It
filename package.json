@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"dummy start message\" && exit 1",
-    "build": "echo \"dummy build message\" && exit 1"
+    
   },
   "keywords": [],
   "author": "",
