@@ -4,17 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "echo \"dummy start message\" && exit 1",
-    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
-    "server": "cd server && npm start",
-    "server:dev": "cd server && npm run dev",
     "install": "cd server && npm i && cd ../client && npm i",
-    "client:build": "cd client && npm run build",
-    "client:dev": "cd client && npm run dev",
-    "build": "echo \"dummy build message\" && exit 1",
-    "seed": "cd server && npm run seed",
-    "render-build": "npm install && npm run build"
+    "build": "echo \"dummy build message\" && exit 1"
   },
   "keywords": [],
   "author": "",
