@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "echo \"dummy start message\" && exit 1",
-    "install": "cd server && npm i && cd ../client && npm i",
     "build": "echo \"dummy build message\" && exit 1"
   },
   "keywords": [],
