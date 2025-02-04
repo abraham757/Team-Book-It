@@ -2,9 +2,9 @@
   "name": "main",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "test.html",
   "scripts": {
-    
+
   },
   "keywords": [],
   "author": "",
