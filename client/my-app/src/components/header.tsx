@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <header style={styles.header}>
-            <h1>Bookstore</h1>
+            <h1>Book It</h1>
         </header>
     );
 }
