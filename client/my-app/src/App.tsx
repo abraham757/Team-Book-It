@@ -1,17 +1,16 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/header';
 import Navbar from './components/navbar'
-import Login from './components/login'
-import Description from './components/description';
+import Hero from './components/hero';
+import Features from './components/features';
 
 function App() {
   return (
     <Router>
-      <Header />
       <Navbar />
-      <Login />
-      <Description />
-      {/* other components/routes */}
+      <div className="mx auto pt-20 px-6 w-full">
+      <Hero />
+      <Features />
+      </div>
     </Router>
   );
 }
