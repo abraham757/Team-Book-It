@@ -21,17 +21,17 @@ const Navbar = () => {
             <span className="text-xl tracking-tight">BookIt</span>
           </Link>
           <ul className="hidden lg:flex ml-14 space-x-12">
-            {navItems.map((item, index) => (
+            {navItems.map((item: any, index: any) => (
               <li key={index}>
                 <Link to={item.href}>{item.label}</Link>
               </li>
             ))}
           </ul>
           <div className="hidden lg:flex justify-center space-x-12 items-center">
-            <Link to="/login" className="bg-[#664229] text-black py-2 px-3 border rounded-md">
+            <Link to="/login" className="bg-blue-500 text-black py-2 px-3 border rounded-md">
               Sign In
             </Link>
-            <Link to="/register" className="bg-[#664229] text-black py-2 px-3 border rounded-md">
+            <Link to="/register" className="bg-blue-500 text-black py-2 px-3 border rounded-md">
               Create an account
             </Link>
           </div>
@@ -51,10 +51,10 @@ const Navbar = () => {
               ))}
             </ul>
             <div className="flex space-x-6">
-              <Link to="/login" className="bg-[#664229] text-black py-2 px-3 border rounded-md">
+              <Link to="/login" className="bg-blue-500 text-black py-2 px-3 border rounded-md">
                 Sign In
               </Link>
-              <Link to="/register" className="bg-[#664229] text-black py-2 px-3 border rounded-md">
+              <Link to="/register" className="bg-blue-500 text-black py-2 px-3 border rounded-md">
                 Create an account
               </Link>
             </div>
