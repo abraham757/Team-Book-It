@@ -7,9 +7,7 @@ import { navItems } from "../constants";
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
-  const toggleNavbar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
-  };
+  const toggleNavbar = () => setMobileDrawerOpen(!mobileDrawerOpen);
 
   return (
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80 font-bold">
@@ -20,13 +18,17 @@ const Navbar = () => {
             <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
             <span className="text-xl tracking-tight">BookIt</span>
           </Link>
+
+          {/* Desktop Navbar */}
           <ul className="hidden lg:flex ml-14 space-x-12">
-            {navItems.map((item: any, index: any) => (
-              <li key={index}>
-                <Link to={item.href}>{item.label}</Link>
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <Link to={item.id}>{item.label}</Link>
               </li>
             ))}
           </ul>
+
+          {/* Sign In & Register Buttons */}
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             <Link to="/login" className="bg-blue-500 text-black py-2 px-3 border rounded-md">
               Sign In
@@ -35,18 +37,22 @@ const Navbar = () => {
               Create an account
             </Link>
           </div>
+
+          {/* Mobile Navbar Toggle */}
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
               {mobileDrawerOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Drawer */}
         {mobileDrawerOpen && (
           <div className="fixed right-0 z-20 bg-[#b99976] w-full p-12 flex flex-col justify-center items-center lg:hidden">
             <ul>
-              {navItems.map((item, index) => (
-                <li key={index} className="py-4">
-                  <Link to={item.href}>{item.label}</Link>
+              {navItems.map((item) => (
+                <li key={item.id} className="py-4">
+                  <Link to={item.id}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -65,4 +71,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;

@@ -4,6 +4,7 @@ import Hero from './components/hero';
 import Features from './components/features';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import BookSearch from './pages/BookSearch';
 
 function Home() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<BookSearch />} />
         </Routes>
       </div>
     </Router>
