@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import apiRoutes from './api/index.js';
-const router = Router();
+import express from "express";
+import bookRoutes from "./bookRoutes";
+import authRoutes from "./authRoutes";
+import favoriteRoutes from "./favoriteRoutes";
+import reviewRoutes from "./reviewRoutes";
 
-router.use('/api', apiRoutes);
-
-export default router;
+export { bookRoutes, authRoutes, favoriteRoutes, reviewRoutes };
