@@ -1,53 +1,55 @@
-import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
-import { Client } from "pg"; // PostgreSQL Client to create DB if missing
-
+import dotenv from 'dotenv';
 dotenv.config();
 
-const databaseName = process.env.DB_NAME || "BookIt";
-const databaseUser = process.env.DB_USER || "postgres";
-const databasePassword = process.env.DB_PASSWORD || "";
-const databaseHost = process.env.DB_HOST || "localhost";
+import { Sequelize } from 'sequelize';
 
-// First, create a connection to PostgreSQL (without a specific DB)
-const client = new Client({
-  user: databaseUser,
-  password: databasePassword,
-  host: databaseHost,
-  port: 5432, // Default PostgreSQL port
-});
+// Check if using a remote PostgreSQL database
+const isUsingRemoteDB = Boolean(process.env.DB_URL);
 
-const sequelize = new Sequelize(databaseName, databaseUser, databasePassword, {
-  host: databaseHost,
-  dialect: "postgres",
-  logging: false, // Disable SQL logging in console for cleaner output
-});
+const sequelize = isUsingRemoteDB
+  ? new Sequelize(process.env.DB_URL as string, {
+      dialect: 'postgres',
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // Allows self-signed certs for Render
+        },
+      },
+      logging: false, // Disables excessive logs in production
+    })
+  : new Sequelize(
+      process.env.DB_NAME || '',
+      process.env.DB_USER || '',
+      process.env.DB_PASSWORD,
+      {
+        host: process.env.DB_HOST || 'localhost',
+        dialect: 'postgres',
+        dialectOptions: {
+          decimalNumbers: true,
+        },
+        logging: console.log, // Enables logging for debugging locally
+      }
+    );
 
-// Ensure database exists before connecting with Sequelize
-const ensureDatabaseExists = async () => {
+// Function to check and log the connection
+async function checkConnection() {
   try {
-    await client.connect();
-    const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = '${databaseName}'`);
+    await sequelize.authenticate();
+    console.log('✅ Database connection has been established successfully.');
 
-    if (res.rowCount === 0) {
-      console.log(`Database "${databaseName}" not found. Creating...`);
-      await client.query(`CREATE DATABASE "${databaseName}"`);
-      console.log(`✅ Database "${databaseName}" created successfully.`);
+    if (isUsingRemoteDB) {
+      console.log(`🌍 Connected to REMOTE database: ${process.env.DB_URL}`);
     } else {
-      console.log(`✅ Database "${databaseName}" already exists.`);
+      console.log(
+        `💻 Connected to LOCAL database: ${sequelize.config.database} at host ${sequelize.config.host}`
+      );
     }
   } catch (error) {
-    console.error("❌ Error checking/creating database:", error);
-  } finally {
-    await client.end(); // Close the connection
+    console.error('❌ Unable to connect to the database:', error);
   }
-};
+}
 
-ensureDatabaseExists().then(() => {
-  sequelize
-    .authenticate()
-    .then(() => console.log(`🚀 Connected to PostgreSQL database: ${databaseName}`))
-    .catch((err) => console.error("❌ Unable to connect to the database:", err));
-});
+// Call the function to log connection details
+checkConnection();
 
 export default sequelize;
