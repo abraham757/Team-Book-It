@@ -10,13 +10,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token); // Update state based on token presence
+    setIsLoggedIn(!!token); 
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     alert("Logged out successfully!");
-    setIsLoggedIn(false); // Update UI after logout
+    setIsLoggedIn(false); 
     window.location.href = "/";
   };
 
@@ -28,13 +28,11 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80 font-bold">
       <div className="container px-4 mx-auto relative">
         <div className="flex justify-between items-center">
-          {/* ✅ Logo with home link */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
             <span className="text-xl tracking-tight">BookIt</span>
           </Link>
           
-          {/* ✅ Desktop Navigation */}
           <ul className="hidden lg:flex ml-14 space-x-12">
             {navItems.map((item, index) => (
               <li key={index}>
@@ -43,7 +41,6 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* ✅ Auth Buttons */}
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             {isLoggedIn ? (
               <button
@@ -64,7 +61,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* ✅ Mobile Menu */}
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
               {mobileDrawerOpen ? <X /> : <Menu />}
@@ -72,7 +68,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* ✅ Mobile Drawer */}
         {mobileDrawerOpen && (
           <div className="fixed right-0 z-20 bg-[#b99976] w-full p-12 flex flex-col justify-center items-center lg:hidden">
             <ul>

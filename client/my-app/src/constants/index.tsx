@@ -4,10 +4,9 @@ import { Heart } from 'lucide-react';
 
 
 export const navItems = [
-    { label: "Place Holder", href: "#" },
-    { label: "Place Holder", href: "#" },
-    { label: "Place Holder", href: "#" },
-    { label: "Place Holder", href: "#" },
+    { label: "Home", href: "/" },
+    { label: "Search", href: "/search" },
+    { label: "Favorites", href: "#" },
   ];
 
 export const features = [

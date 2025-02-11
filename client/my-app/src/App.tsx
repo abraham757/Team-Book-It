@@ -5,14 +5,15 @@ import Features from './components/features';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import BookSearch from './pages/BookSearch';
+import HeroSection from './components/heroSection';
 
 function Home() {
   const location = useLocation();
-
   return (
     <>
+      <HeroSection />
       <Hero />
-      {location.pathname === '/' && <Features />} {/* Only show on homepage */}
+      {location.pathname === '/' && <Features /> }
     </>
   );
 }
@@ -32,5 +33,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

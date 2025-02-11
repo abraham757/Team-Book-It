@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 
+interface Book {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors?: string[];
+    imageLinks?: {
+      thumbnail: string;
+    };
+  };
+}
+
 const BookSearch = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -15,7 +26,7 @@ const BookSearch = () => {
         }
 
         const data = await response.json();
-        console.log("📚 Fetched Books Data:", data); // ✅ Debugging Log
+        console.log("📚 Fetched Books Data:", data); 
         setBooks(data.items || []);
       } catch (error) {
         console.error("❌ Error fetching books:", error);
@@ -27,7 +38,7 @@ const BookSearch = () => {
 
   return (
     <div>
-      <h2>Top-Selling Books</h2>
+      <h2 className="font-bold">Top-Selling Books</h2>
       {books.length === 0 ? (
         <p>No books found.</p>
       ) : (
@@ -36,7 +47,10 @@ const BookSearch = () => {
             <li key={book.id}>
               <h3>{book.volumeInfo.title}</h3>
               <p>By: {book.volumeInfo.authors?.join(", ")}</p>
-              <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
+              <img
+                src={book.volumeInfo.imageLinks?.thumbnail}
+                alt={book.volumeInfo.title}
+              />
             </li>
           ))}
         </ul>

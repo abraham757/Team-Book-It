@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface Book {
+  buyLink: string;
+  image: string;
+  title: string;
+  author: string;
+}
+
 const Hero = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const fetchBestSellers = async () => {
       try {
-        console.log("📌 Fetching NYT Best Sellers...");
+        console.log(":pushpin: Fetching NYT Best Sellers...");
         const response = await axios.get("http://localhost:5000/api/books/nyt-bestsellers");
-        console.log("📚 Books Fetched:", response.data);
+        console.log(":books: Books Fetched:", response.data);
         setBooks(response.data);
       } catch (error) {
-        console.error("❌ Error fetching bestsellers:", error);
+        console.error(":x: Error fetching bestsellers:", error);
       }
     };
-
     fetchBestSellers();
   }, []);
 
   return (
-    <div className="bg-[#b99976] text-center p-10">
+    <div className="bg-[#B99976] text-center p-10">
       <h2 className="text-4xl font-bold mb-6">Top NYT Best Sellers</h2>
       <div className="flex flex-wrap justify-center gap-6">
         {books.length > 0 ? (
