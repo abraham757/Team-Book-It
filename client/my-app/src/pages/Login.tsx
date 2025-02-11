@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import loginBg from '../assets/img/loginbg.webp';
 
 const Login = () => {
-    console.log("Login component is rendering"); // Debugging check
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Login = () => {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
     if (response.ok) {
@@ -23,13 +23,37 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-3xl mb-4">Login</h2>
-      <input className="border p-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input className="border p-2 mt-2" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button className="bg-blue-500 text-white px-4 py-2 mt-4" onClick={handleLogin}>Login</button>
+<div
+  className="flex items-center justify-center min-h-screen  bg-center"
+  style={{ backgroundImage: `url(${loginBg})` }}
+>
+  <div className="bg-[#664229] p-9 rounded-2xl shadow-lg w-full max-w-sm">
+    <h2 className="text-2xl font-semibold text-center text-white mb-6">Login</h2>
+    <div className="space-y-4">
+      <input
+        className="w-full px-4 py-2 border bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        className="w-full px-4 py-2 border bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button
+        className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-green-600 transition duration-300"
+        onClick={handleLogin}
+      >
+        Login
+      </button>
     </div>
+  </div>
+</div>
   );
 };
 
 export default Login;
+

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite node dist/server.js",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.4",
+    "axios": "^1.7.9",
     "lucide-react": "^0.474.0",
     "my-app": "file:",
     "react": "^18.3.1",
