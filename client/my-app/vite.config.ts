@@ -8,7 +8,7 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: "https://team-book-it-13rh.onrender.com", // Your deployed backend URL
+        target: "https://team-book-it-13rh.onrender.com:5000", // Your deployed backend URL
         changeOrigin: true,
         secure: true,
       },
