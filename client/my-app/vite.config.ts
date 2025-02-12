@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -9,11 +8,11 @@ export default defineConfig({
     port: 5173,
     open: true,
     proxy: {
-      "/api/auth": {
-    target: "http://localhost:5000",
-    changeOrigin: true,
-    secure: false,
-     },
-    }
+      "/api": {
+        target: "https://team-book-it-13rh.onrender.com", // Your deployed backend URL
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
 })
