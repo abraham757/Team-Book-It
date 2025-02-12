@@ -7,8 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || "https://team-book-it-13rh.onrender.com";
+
+
   const handleLogin = async () => {
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('${API_URL}/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
