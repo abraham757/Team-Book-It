@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL || "https://team-book-it-13rh.onrender.com";
 
   useEffect(() => {
     const fetchFavorites = async () => {
-      const response = await fetch('/api/favorites', {
+      const response = await fetch(`${API_URL}/api/favorites`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const data = await response.json();
