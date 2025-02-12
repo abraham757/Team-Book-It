@@ -12,7 +12,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ./client/my-app && npm i  && cd ../server && npm i && npm run build && cd ../",
+    "build": "cd ./client/my-app && npm i  && cd ../../server && npm i && npm run build && cd ../../",
     "client:dev": "cd client/my-app && npm run dev",
     "server:dev": "cd server && npm run start",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:5173 && npm run client:dev\"",
