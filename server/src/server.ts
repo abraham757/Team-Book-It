@@ -14,11 +14,18 @@ const app = express();
 
 // ✅ Enable CORS for frontend access
 app.use(cors({
-  origin: "http://localhost:5173", // Allow frontend to access backend
+  origin: [
+    "http://localhost:5173", // Para desarrollo local
+    "https://team-book-it-13rh.onrender.com", // Reemplaza con la URL de tu frontend en Render
+  ],
   credentials: true
 }));
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("🚀 API is running! on server");
+});
 
 // Routes
 app.use("/api/auth", authRoutes);
