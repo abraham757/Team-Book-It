@@ -9,7 +9,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "https://team-book-it-13rh.onrender.com:5000", // Your deployed backend URL
+        target: "http://localhost:5000",  // Your deployed backend URL
         changeOrigin: true,
         secure: true,
       },
@@ -18,6 +18,6 @@ export default defineConfig({
   preview: {
     port: 4173,
     host: "0.0.0.0",
-    allowedHosts: ["https://team-book-it-13rh.onrender.com"], // ✅ Add your Render frontend URL
+    allowedHosts: ["team-book-it-13rh.onrender.com"], // ✅ Add your Render frontend URL
   },
 })
