@@ -15,7 +15,7 @@
     "build": "cd ./client/my-app && npm i  && cd ../../server && npm i && npm run build && cd ../../",
     "client:dev": "cd client/my-app && npm run dev",
     "server:dev": "cd server && npm run start",
-    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:5173 && npm run client:dev\"",
+    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:5000 && npm run client:dev\"",
     "install-and-build": "npm i && npm run build"
   },
   "devDependencies": {
