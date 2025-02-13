@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    host: true,  // Permite que el servidor sea accesible externamente
     open: true,
+    port: 5173,
     proxy: {
       "/api": {
         target: "https://team-book-it-13rh.onrender.com:5000", // Your deployed backend URL
@@ -14,5 +14,10 @@ export default defineConfig({
         secure: true,
       },
     },
+  },
+  preview: {
+    port: 4173,
+    host: "0.0.0.0",
+    allowedHosts: ["https://team-book-it-13rh.onrender.com"], // ✅ Add your Render frontend URL
   },
 })
