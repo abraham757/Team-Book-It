@@ -11,8 +11,19 @@ const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    
+    
+
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "User already exists" });
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, password: hashedPassword });
+
 
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
